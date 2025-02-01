@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<Authors>Eesh</Authors>
+	<Title>UtilityFeed.RandomAny</Title>
+	<PackageId>UtilityFeed.RandomAny</PackageId>
+	<Description>This package facilitates generation of random values for various datatypes.</Description>
+	<PackageTags>UtilityFeed.RandomAny</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <AdditionalFiles Include="../stylecop.json" />
+  </ItemGroup>
+
+</Project>
