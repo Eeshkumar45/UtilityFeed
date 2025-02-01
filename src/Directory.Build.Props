@@ -1,0 +1,10 @@
+<Project>
+    <PropertyGroup>
+		<LangVersion>Latest</LangVersion>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<RepositoryUrl>https://github.com/Eeshkumar45/UtilityFeed</RepositoryUrl>
+		<Copyright>Copyright UtilityFeed 2024</Copyright>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Company>UtilityFeedInc</Company>
+	</PropertyGroup>
+</Project>
