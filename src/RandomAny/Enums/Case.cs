@@ -33,4 +33,9 @@ public enum Case
     /// Snake_Case
     /// </summary>
     SnakeCase,
+
+    /// <summary>
+    /// kebab-case
+    /// </summary>
+    KebabCase,
 }
