@@ -44,5 +44,6 @@ jobs:
           dotnet nuget push ./artifacts/*.nupkg \
           --source "https://nuget.pkg.github.com/eeshkumar45/index.json" \
           --api-key ${{ secrets.UTILITYFEEDTOKEN }}
+        working-directory: ./src
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.UTILITYFEEDTOKEN }}
