@@ -5,5 +5,5 @@ branches:
     track-merge-target: false
 merge-message-formats:
   '.*BREAKING CHANGE.*': major
-  '.*FEATURE.*': minor
-  '.*FIX.*': patch
+  '.*FEATURE.*': patch
+  '.*FIX.*': minor
