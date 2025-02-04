@@ -30,7 +30,7 @@ jobs:
       - name: Create and Push Tag
         run: |
           git tag $VERSION
-          git push https://$GH_PAT@github.com/Eeshkumar45/UtilityFeed.git $VERSION
+          git push https://${{ secrets.UTILITYFEEDTOKEN }}@github.com/Eeshkumar45/UtilityFeed.git $VERSION
         env:
           GH_PAT: ${{ secrets.UTILITYFEEDTOKEN }}
 
