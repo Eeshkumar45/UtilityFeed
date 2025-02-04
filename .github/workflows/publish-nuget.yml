@@ -27,6 +27,11 @@ jobs:
       - name: Determine Version with GitVersion
         run: echo "VERSION=$(dotnet-gitversion /output json | jq -r '.MajorMinorPatch')" >> $GITHUB_ENV
 
+      - name: Create and Push Tag
+        run: |
+          git tag $VERSION
+          git push origin $VERSION
+
       - name: Restore dependencies
         run: dotnet restore
         working-directory: ./src
