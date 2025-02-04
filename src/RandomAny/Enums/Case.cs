@@ -28,4 +28,9 @@ public enum Case
     /// PascalCase
     /// </summary>
     PascalCase,
+
+    /// <summary>
+    /// Snake_Case
+    /// </summary>
+    SnakeCase,
 }
