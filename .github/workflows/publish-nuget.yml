@@ -32,10 +32,8 @@ jobs:
           git config user.email "73717951+Eeshkumar45@users.noreply.github.com"
           git config user.name "Eeshkumar45"
           git tag $VERSION
-          git push https://x-access-token:${{ NUGET_AUTH_TOKEN }}@github.com/Eeshkumar45/UtilityFeed.git $VERSION
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.UTILITYFEEDTOKEN }}
-          
+          git push https://x-access-token:${{ secrets.UTILITYFEEDTOKEN }}@github.com/Eeshkumar45/UtilityFeed.git $VERSION
+
       - name: Restore dependencies
         run: dotnet restore
         working-directory: ./src
