@@ -25,7 +25,7 @@ public class RandomAny
     /// <param name="charset">The character set to be used to generate the string.</param>
     /// <param name="caseType">The case tyep of the string to be generated.</param>
     /// <returns>A random string with defined length.</returns>
-    public static string RandomString(int length, string charset = DefaultCharset, Case caseType = Case.CamelCase)
+    public static string RandomString(int length, string charset = DefaultCharset, Case caseType = Case.UpperCase)
     {
         if (length <= 0)
         {
