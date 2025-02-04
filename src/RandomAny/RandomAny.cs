@@ -54,6 +54,7 @@ public class RandomAny
             Case.PascalCase => string.Concat(finalString.Chunk(5).Select((word, i) => char.ToUpper(word[0]) + new string(word[1..]))),
             Case.CamelCase => string.Concat(finalString.Chunk(5).Select((word, i) => i == 0 ? char.ToLower(word[0]) + new string(word[1..]) : char.ToUpper(word[0]) + new string(word[1..]))),
             Case.SnakeCase => string.Join("_", finalString.Chunk(5).Select(word => new string(word))),
+            Case.KebabCase => string.Join("-", finalString.Chunk(5).Select(word => new string(word))),
             _ => finalString,
         };
     }
