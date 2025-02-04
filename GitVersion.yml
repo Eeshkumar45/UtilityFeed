@@ -1,11 +1,4 @@
-branches:
-  main:
-    regex: main
-    increment: Patch
-    track-merge-target: false
-    prevent-increment-of-merged-branch-version: true
-    is-mainline: true
-merge-message-formats:
-  '.*BREAKING CHANGE.*': major
-  '.*FEATURE.*': minor
-  '.*FIX': patch
+assembly-versioning-scheme: MajorMinorPatch
+mode: Mainline
+major-version-bump-message: '^BREAKING.*'
+minor-version-bump-message: '^FEATURE.*'
