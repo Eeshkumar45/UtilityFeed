@@ -1,0 +1,45 @@
+name: Publish NuGet Package to GitHub Packages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.x
+
+      - name: Install GitVersion
+        run: dotnet tool install --global GitVersion.Tool
+
+      - name: Determine Version with GitVersion
+        run: echo "VERSION=$(gitversion /output json | jq -r '.NuGetVersion')" >> $GITHUB_ENV
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the project
+        run: dotnet build --configuration Release /p:Version=${{ env.VERSION }}
+
+      - name: Pack the project
+        run: dotnet pack --configuration Release --output ./artifacts /p:Version=${{ env.VERSION }}
+
+      - name: Publish to GitHub Packages
+        run: |
+          dotnet nuget push ./artifacts/*.nupkg \
+          --source "https://nuget.pkg.github.com/eeshkumar45/index.json" \
+          --api-key ${{ secrets.UTILITYFEEDTOKEN }}
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.UTILITYFEEDTOKEN }}

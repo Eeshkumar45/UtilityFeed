@@ -1,0 +1,13 @@
+mode: ContinuousDelivery
+branches:
+  main:
+    tag: ""
+    increment: Patch
+    prevent-increment-of-merged-branch-version: true
+commit-message-incrementing: Enabled
+increment-mapping:
+  BREAKING-CHANGE: Major
+  FEATURE: Minor
+  FIX: Patch
+ignore:
+  sha: []
