@@ -194,6 +194,20 @@ namespace UtilityFeed.RandomAny.Tests
 		}
 
 		[Fact]
+		public void RandomDate_CustomStartAndEndDate_ReturnsSameDate()
+		{
+			// Arrange
+			DateTime startDate = new DateTime(2023, 12, 31);
+			DateTime endDate = new DateTime(2023, 12, 31);
+
+			// Act
+			DateTime result = RandomAny.RandomDate(startDate, endDate);
+
+			// Assert
+			Assert.Equal(result, endDate);
+		}
+
+		[Fact]
 		public void RandomDate_StartDateGreaterThanEndDate_ThrowsArgumentException()
 		{
 			// Arrange
