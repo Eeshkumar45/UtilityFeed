@@ -1,13 +1,10 @@
-mode: ContinuousDelivery
+next-version: 1.0.0
 branches:
   main:
-    tag: ""
+    regex: main
     increment: Patch
-    prevent-increment-of-merged-branch-version: true
-commit-message-incrementing: Enabled
-increment-mapping:
-  BREAKING-CHANGE: Major
-  FEATURE: Minor
-  FIX: Patch
-ignore:
-  sha: []
+    track-merge-target: false
+merge-message-formats:
+  '.*BREAKING CHANGE.*': major
+  '.*FEATURE.*': minor
+  '.*FIX.*': patch

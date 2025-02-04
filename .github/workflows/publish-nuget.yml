@@ -25,16 +25,19 @@ jobs:
         run: dotnet tool install --global GitVersion.Tool
 
       - name: Determine Version with GitVersion
-        run: echo "VERSION=$(gitversion /output json | jq -r '.NuGetVersion')" >> $GITHUB_ENV
+        run: echo "VERSION=$(dotnet-gitversion /output json | jq -r '.MajorMinorPatch')" >> $GITHUB_ENV
 
       - name: Restore dependencies
         run: dotnet restore
+        working-directory: ./src
 
       - name: Build the project
         run: dotnet build --configuration Release /p:Version=${{ env.VERSION }}
+        working-directory: ./src
 
       - name: Pack the project
         run: dotnet pack --configuration Release --output ./artifacts /p:Version=${{ env.VERSION }}
+        working-directory: ./src
 
       - name: Publish to GitHub Packages
         run: |
