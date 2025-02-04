@@ -8,7 +8,7 @@ namespace UtilityFeed.RandomAny.Tests
 		public void RandomString_ValidLength_ReturnsStringOfExpectedLength()
 		{
 			// Arrange
-			int length = 10;
+			int length = 30;
 
 			// Act
 			string result = RandomAny.RandomString(length);
@@ -35,7 +35,7 @@ namespace UtilityFeed.RandomAny.Tests
 		public void RandomString_UpperCase_ReturnsUpperCaseString()
 		{
 			// Arrange
-			int length = 10;
+			int length = 30;
 
 			// Act
 			string result = RandomAny.RandomString(length, caseType: Case.UpperCase);
@@ -67,14 +67,14 @@ namespace UtilityFeed.RandomAny.Tests
 			string result = RandomAny.RandomString(length, caseType: Case.KebabCase);
 
 			// Assert
-			Assert.Contains("_", result);
+			Assert.Contains("-", result);
 		}
 
 		[Fact]
 		public void RandomString_LowerCase_ReturnsLowerCaseString()
 		{
 			// Arrange
-			int length = 10;
+			int length = 30;
 
 			// Act
 			string result = RandomAny.RandomString(length, caseType: Case.LowerCase);
@@ -86,7 +86,7 @@ namespace UtilityFeed.RandomAny.Tests
 		[Fact]
 		public void RandomString_PascalCase_ReturnsPascalCaseString()
 		{
-			int length = 15;
+			int length = 30;
 
 			string result = RandomAny.RandomString(length, caseType: Case.PascalCase);
 			
@@ -97,7 +97,7 @@ namespace UtilityFeed.RandomAny.Tests
 		public void RandomString_CamelCase_ReturnsCamelCaseString()
 		{
 			// Arrange
-			int length = 15;
+			int length = 30;
 
 			// Act
 			string result = RandomAny.RandomString(length, caseType: Case.CamelCase);
@@ -111,7 +111,7 @@ namespace UtilityFeed.RandomAny.Tests
 		{
 			// Arrange
 			int startInt = 1;
-			int endInt = 10;
+			int endInt = 30;
 
 			// Act
 			int result = RandomAny.RandomInt(startInt, endInt);
