@@ -1,10 +1,4 @@
-branches:
-  main:
-    regex: main
-    increment: Patch
-    track-merge-target: false
-    
 merge-message-formats:
   '.*BREAKING CHANGE.*': major
-  '.*FEATURE.*': patch
-  '.*FIX.*': minor
+  '.*FEATURE.*': minor
+  '.*FIX.*': patch
