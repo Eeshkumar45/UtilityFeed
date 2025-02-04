@@ -74,4 +74,26 @@ public class RandomAny
 
         return Random.Next(startInt, endInt);
     }
+
+    /// <summary>
+    /// Generates a random DateTime value between startDate and endDate.
+    /// </summary>
+    /// <param name="startDate">The start date.</param>
+    /// <param name="endDate">The end date.</param>
+    /// <returns>Random DateTime value between startDate and endDate.</returns>
+    public static DateTime RandomDate(DateTime? startDate = null, DateTime? endDate = null)
+    {
+        // Use default values if startDate or endDate are null
+        DateTime start = startDate ?? DateTime.MinValue;
+        DateTime end = endDate ?? DateTime.MaxValue;
+
+        if (start > end)
+        {
+            throw new ArgumentException("startDate must be less than or equal to endDate");
+        }
+
+        int range = (end - start).Days;
+        int randomDays = Random.Next(range);
+        return start.AddDays(randomDays);
+    }
 }

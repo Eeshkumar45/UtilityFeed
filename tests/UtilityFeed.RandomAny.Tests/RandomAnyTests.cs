@@ -136,5 +136,72 @@ namespace UtilityFeed.RandomAny.Tests
 			// Assert
 			Assert.InRange(result, int.MinValue, int.MaxValue);
 		}
+
+		[Fact]
+		public void RandomDate_DefaultParameters_ReturnsDateBetweenMinAndMax()
+		{
+			// Arrange
+			DateTime minDate = DateTime.MinValue;
+			DateTime maxDate = DateTime.MaxValue;
+
+			// Act
+			DateTime result = RandomAny.RandomDate();
+
+			// Assert
+			Assert.InRange(result, minDate, maxDate);
+		}
+
+		[Fact]
+		public void RandomDate_CustomStartDate_ReturnsDateBetweenStartAndMax()
+		{
+			// Arrange
+			DateTime startDate = new DateTime(2020, 1, 1);
+			DateTime maxDate = DateTime.MaxValue;
+
+			// Act
+			DateTime result = RandomAny.RandomDate(startDate: startDate);
+
+			// Assert
+			Assert.InRange(result, startDate, maxDate);
+		}
+
+		[Fact]
+		public void RandomDate_CustomEndDate_ReturnsDateBetweenMinAndEnd()
+		{
+			// Arrange
+			DateTime minDate = DateTime.MinValue;
+			DateTime endDate = new DateTime(2023, 12, 31);
+
+			// Act
+			DateTime result = RandomAny.RandomDate(endDate: endDate);
+
+			// Assert
+			Assert.InRange(result, minDate, endDate);
+		}
+
+		[Fact]
+		public void RandomDate_CustomStartAndEndDate_ReturnsDateBetweenStartAndEnd()
+		{
+			// Arrange
+			DateTime startDate = new DateTime(2020, 1, 1);
+			DateTime endDate = new DateTime(2023, 12, 31);
+
+			// Act
+			DateTime result = RandomAny.RandomDate(startDate, endDate);
+
+			// Assert
+			Assert.InRange(result, startDate, endDate);
+		}
+
+		[Fact]
+		public void RandomDate_StartDateGreaterThanEndDate_ThrowsArgumentException()
+		{
+			// Arrange
+			DateTime startDate = new DateTime(2023, 12, 31);
+			DateTime endDate = new DateTime(2020, 1, 1);
+
+			// Act & Assert
+			Assert.Throws<ArgumentException>(() => RandomAny.RandomDate(startDate, endDate));
+		}
 	}
 }
