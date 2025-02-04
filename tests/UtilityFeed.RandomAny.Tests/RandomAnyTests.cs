@@ -58,6 +58,19 @@ namespace UtilityFeed.RandomAny.Tests
 		}
 
 		[Fact]
+		public void RandomString_KebabCase_ReturnsKebabCaseString()
+		{
+			// Arrange
+			int length = 30;
+
+			// Act
+			string result = RandomAny.RandomString(length, caseType: Case.KebabCase);
+
+			// Assert
+			Assert.Contains("_", result);
+		}
+
+		[Fact]
 		public void RandomString_LowerCase_ReturnsLowerCaseString()
 		{
 			// Arrange
