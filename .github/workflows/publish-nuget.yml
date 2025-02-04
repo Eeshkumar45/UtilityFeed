@@ -30,7 +30,9 @@ jobs:
       - name: Create and Push Tag
         run: |
           git tag $VERSION
-          git push origin $VERSION
+          git push https://$GH_PAT@github.com/Eeshkumar45/UtilityFeed.git $VERSION
+        env:
+          GH_PAT: ${{ secrets.UTILITYFEEDTOKEN }}
 
       - name: Restore dependencies
         run: dotnet restore
