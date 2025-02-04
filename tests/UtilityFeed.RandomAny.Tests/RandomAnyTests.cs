@@ -67,7 +67,7 @@ namespace UtilityFeed.RandomAny.Tests
 			string result = RandomAny.RandomString(length, caseType: Case.KebabCase);
 
 			// Assert
-			Assert.Contains("_", result);
+			Assert.Contains("-", result);
 		}
 
 		[Fact]
