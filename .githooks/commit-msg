@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Allowed prefixes
+PREFIXES=("BREAKING" "FEATURE" "FIX")
+
+# Read commit message
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(head -n1 "$COMMIT_MSG_FILE")
+
+# Check if commit message starts with an allowed prefix
+for PREFIX in "${PREFIXES[@]}"; do
+    if [[ "$COMMIT_MSG" =~ ^$PREFIX ]]; then
+        exit 0  # Valid message
+    fi
+done
+
+# If message is invalid, inform the user
+echo "❌ Invalid commit message format!"
+echo "Commit messages must start with 'Breaking', 'Feature', or 'Fix'."
+echo "Your message: '$COMMIT_MSG'"
+echo "Even if you commit, you will not be able to push."
+echo
+
+# Read user input from the terminal
+echo -n "Do you want to rename the commit message? (y/n/c): " > /dev/tty
+read CHOICE < /dev/tty
+
+if [[ "$CHOICE" == "y" || "$CHOICE" == "Y" ]]; then
+    echo -n "Enter new commit message: " > /dev/tty
+    read NEW_MSG < /dev/tty
+    echo "$NEW_MSG" > "$COMMIT_MSG_FILE"
+    echo "✅ Commit message updated!"
+elif [[ "$CHOICE" == "c" || "$CHOICE" == "C" ]]; then
+    echo "❌ Commit canceled!"
+    exit 1
+    return
+else
+    echo "⚠️ Proceeding with invalid commit message. You cannot push this commit."
+fi
+
+exit 0

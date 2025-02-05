@@ -1,0 +1,38 @@
+#!/bin/bash
+if [[ "$ALLOW_INVALID_PUSH" == "1" ]]; then
+    echo "⚠️ Warning: You are bypassing commit message checks!"
+    exit 0
+fi
+# Get the list of commits that are being pushed
+COMMITS=$(git log origin/$(git rev-parse --abbrev-ref HEAD)..HEAD --pretty=format:"%h %s")
+
+# Allowed prefixes
+PREFIXES=("BREAKING" "FEATURE" "FIX")
+
+# Check each commit message
+INVALID_COMMITS=()
+while read -r COMMIT_HASH COMMIT_MSG; do
+    VALID=false
+    for PREFIX in "${PREFIXES[@]}"; do
+        if [[ "$COMMIT_MSG" =~ ^$PREFIX ]]; then
+            VALID=true
+            break
+        fi
+    done
+    if ! $VALID; then
+        INVALID_COMMITS+=("$COMMIT_HASH: $COMMIT_MSG")
+    fi
+done <<< "$COMMITS"
+
+# If there are invalid commits, prevent push
+if [[ ${#INVALID_COMMITS[@]} -ne 0 ]]; then
+    echo "❌ Push rejected! The following commits don't follow the naming convention:"
+    printf '%s\n' "${INVALID_COMMITS[@]}"
+    echo
+    echo "Please reword your commits using:"
+    echo "  git commit --amend  # To modify the last commit"
+    echo "  git rebase -i HEAD~N  # To edit older commits"
+    exit 1
+fi
+
+exit 0
